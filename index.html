@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توزيع الملاحظين - اختبارات الفصل الدراسي الثالث ١٤٤٦ هـ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-card {
+            background: linear-gradient(135deg, #2c5aa0, #1e3c72);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ministry-logo {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ministry-logo img {
+            width: 200px;
+            height: 160px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .ministry-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dots-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .ministry-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .department-text {
+            font-size: 1em;
+            margin-bottom: 5px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .school-text {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .ministry-english {
+            font-size: 1.2em;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px 25px;
+            background: white;
+        }
+
+        .main-title {
+            font-size: 2.2em;
+            font-weight: 800;
+            text-align: center;
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+
+        .exam-info {
+            font-size: 1.1em;
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .subjects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .subject-card {
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-card:hover .subject-icon {
+            animation: pulse 1.5s infinite;
+        }
+
+        .subject-card.active {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .math-card { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .english-card { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .quran-card { background: linear-gradient(135deg, #16a085, #138d75); }
+        .arabic-card { background: linear-gradient(135deg, #34495e, #2c3e50); }
+        .social-card { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .science-card { background: linear-gradient(135deg, #27ae60, #229954); }
+
+        .subject-day {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+            opacity: 0.95;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            line-height: 1.2;
+        }
+
+        .hijri-date {
+            font-size: 0.7em;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 3px;
+            display: block;
+        }
+
+        .subject-icon {
+            font-size: 4em;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+            height: 140px;
+            margin: 20px auto;
+        }
+
+        .subject-image {
+            width: 200px;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 12px;
+            filter: brightness(0) invert(1);
+            drop-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+
+
+        .subject-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .subject-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            margin: -20px;
+            margin-top: 20px;
+            padding: 0 20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .subject-details.active {
+            max-height: 400px;
+            padding: 20px 20px;
+        }
+
+        .committee {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-right: 4px solid #2c5aa0;
+        }
+
+        .committee:last-child {
+            margin-bottom: 0;
+        }
+
+        .committee-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #2c5aa0;
+            margin-bottom: 8px;
+        }
+
+        .supervisor-name {
+            font-size: 1em;
+            color: #333;
+            font-weight: 500;
+            padding: 5px 0;
+        }
+
+        .instructions-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .instructions-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c5aa0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .instructions-list {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .instruction-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+
+        .instruction-item:last-child {
+            border-bottom: none;
+        }
+
+        .instruction-icon {
+            font-size: 1em;
+            flex-shrink: 0;
+            margin-top: 8px;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+
+        .instruction-text {
+            font-size: 1em;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .signature-section {
+            background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #dee2e6;
+        }
+
+        .signature-role {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+
+        .signature-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #343a40;
+        }
+
+        .personal-logo {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .personal-logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .personal-logo-img:hover {
+            transform: scale(1.1);
+        }
+
+        .bottom-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                border-radius: 20px;
+            }
+            
+            .main-content {
+                padding: 25px 20px;
+            }
+            
+            .subject-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <div class="ministry-logo">
+                <img src="images/school_logo.png" alt="شعار المدرسة">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="main-title">توزيع الملاحظين</div>
+            <div class="exam-info">اختبارات الفصل الدراسي الثالث ١٤٤٦ هـ</div>
+
+            <div class="subjects-container">
+                <div class="subject-card math-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الأحد <span class="hijri-date">1446/12/19هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/math.png" alt="رياضيات" class="subject-image">
+                    </div>
+                    <div class="subject-name">رياضيات</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">محمد الشويمي</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">سعود السويلم</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">محمد التركي</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-card english-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الاثنين <span class="hijri-date">1446/12/20هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/english.png" alt="إنجليزي" class="subject-image">
+                    </div>
+                    <div class="subject-name">إنجليزي</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">سلمي المطيري</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">عبدالله البريثن</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">خالد العنقري</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-card quran-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الثلاثاء <span class="hijri-date">1446/12/21هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/quran.png" alt="تجويد" class="subject-image">
+                    </div>
+                    <div class="subject-name">تجويد</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">خالد الرشيدان</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">أحمد المطيري</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">سعد الصالح</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-card arabic-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الأربعاء <span class="hijri-date">1446/12/22هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/arabic.png" alt="لغتي" class="subject-image">
+                    </div>
+                    <div class="subject-name">لغتي</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">خالد الرويس</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">إبراهيم المهنا</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">فهد المطيري</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-card social-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الخميس <span class="hijri-date">1446/12/23هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/social.png" alt="اجتماعيات" class="subject-image">
+                    </div>
+                    <div class="subject-name">اجتماعيات</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">مازن الطويل</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">نادر الصفق</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">باسل المنيع</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subject-card science-card" onclick="toggleDetails(this)">
+                    <div class="subject-day">الأحد <span class="hijri-date">1446/12/26هـ</span></div>
+                    <div class="subject-icon">
+                        <img src="images/science.png" alt="علوم" class="subject-image">
+                    </div>
+                    <div class="subject-name">علوم</div>
+                    <div class="subject-details">
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الأولى</div>
+                            <div class="supervisor-name">محمد الثاقب</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثانية</div>
+                            <div class="supervisor-name">محمد المهنا</div>
+                        </div>
+                        <div class="committee">
+                            <div class="committee-title">اللجنة الثالثة</div>
+                            <div class="supervisor-name">عبدالرحمن الجماز</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions-section">
+                <div class="instructions-title">تعليمات مهمة للملاحظين</div>
+                <div class="instructions-list">
+                    <div class="instruction-item">
+                        <div class="instruction-icon">●</div>
+                        <div class="instruction-text">الحضور قبل عشر دقائق من بداية الاختبار</div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">●</div>
+                        <div class="instruction-text">المحافظة على الهدوء في قاعة الاختبار</div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">●</div>
+                        <div class="instruction-text">التأكد من توزيع نموذج الأسئلة لجميع الطلاب في الاختبار</div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="instruction-icon">●</div>
+                        <div class="instruction-text">التأكد من قيام الطالب بتدوين اسمه كاملاً في ورقة الاختبار</div>
+                    </div>
+                </div>
+
+                <div class="signature-section">
+                    <div class="signature-role">مدير المدرسة</div>
+                    <div class="signature-name">فرحان بن محمد السيحاني</div>
+                </div>
+
+                <!-- شعارك الشخصي -->
+                <div class="personal-logo">
+                    <img src="images/personal_logo.png" alt="الشعار الشخصي" class="personal-logo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-indicator"></div>
+
+    <script>
+        function toggleDetails(card) {
+            const details = card.querySelector('.subject-details');
+            const isActive = card.classList.contains('active');
+            
+            // إغلاق جميع الكروت المفتوحة
+            document.querySelectorAll('.subject-card').forEach(c => {
+                c.classList.remove('active');
+                c.querySelector('.subject-details').classList.remove('active');
+            });
+            
+            // فتح الكرت المحدد إذا لم يكن مفتوحاً
+            if (!isActive) {
+                card.classList.add('active');
+                details.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
